@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Internet Meme of the Day</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #333;
+      padding: 2rem;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    img {
+      max-width: 90%;
+      max-height: 500px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    }
+    .footer {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: white;
+    }
+    button {
+      margin-top: 1.5rem;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      background-color: #ffb347;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background-color: #ff944d;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>📸 Random Meme from the Internet</h1>
+  <img id="memeImage" src="" alt="Loading meme...">
+  <button onclick="getMeme()">New Meme</button>
+  <div class="footer">created by jobless</div>
+
+  <script>
+    async function getMeme() {
+      try {
+        const res = await fetch("https://meme-api.com/gimme");
+        const data = await res.json();
+        document.getElementById("memeImage").src = data.url;
+      } catch (error) {
+        alert("Oops! Couldn't load meme. Try again.");
+      }
+    }
+
+    // Sayfa açılınca bir tane yükle
+    getMeme();
+  </script>
+</body>
+</html>
